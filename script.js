@@ -117,6 +117,24 @@ const revealObs = new IntersectionObserver(entries => {
 }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+/* ─── Mobile Nav ─── */
+const mobBtn = document.getElementById('mob-btn');
+const mobNav = document.getElementById('mob-nav');
+
+mobBtn.addEventListener('click', () => {
+  const isOpen = mobBtn.classList.toggle('open');
+  mobNav.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+document.querySelectorAll('.mob-nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobBtn.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
 /* ─── Active Nav ─── */
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-link:not(.nav-cta)');
